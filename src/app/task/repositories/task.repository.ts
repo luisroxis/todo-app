@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ITask } from '../model/itask';
 
+
 @Injectable({
   providedIn: 'root',
 })
@@ -11,26 +12,26 @@ export class TaskRepository {
     private httpClient: HttpClient
   ) { }
 
-  create(task: ITask): Promise<ITask> {
+  create(task: ITask): Promise<any> {
     return this.httpClient
-      .post<ITask>(`${environment.api}/tasks`, task)
+      .post<any>(`${environment.api}/tasks`, task)
       .toPromise();
   }
 
-  update(entity: ITask): Promise<ITask> {
+  update(entity: ITask): Promise<any> {
     const { id, ...data } = entity;
     return this.httpClient
-      .put<ITask>(`${environment.api}/tasks/${id}`, data)
+      .put<any>(`${environment.api}/tasks/${id}`, data)
       .toPromise();
   }
 
-  getById(id: string): Promise<ITask> {
+  getById(id: string): Promise<any> {
     return this.httpClient
       .get<ITask>(`${environment.api}/tasks/${id}`)
       .toPromise();
   }
 
-  getAll(): Promise<ITask[]> {
+  getAll(): Promise<any> {
     return this.httpClient
       .get<ITask[]>(`${environment.api}/tasks/`)
       .toPromise();
